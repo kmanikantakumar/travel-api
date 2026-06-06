@@ -3,10 +3,11 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"travel-api/internal/intent"
 )
 
 func main() {
-	http.HandleFunc("/intent", handlers.Handler)
+	http.HandleFunc("/", intent.Handler)
 
 	fmt.Println("Server running on :8080")
 	http.ListenAndServe(":8080", nil)

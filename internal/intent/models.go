@@ -7,6 +7,6 @@ type IntentRequest struct {
 type TripIntent struct {
 	Destination string `json:"destination"`
 	DateFrom    string `json:"dateFrom"`
-	DateTo      string `json:"dateTO"`
+	DateTo      string `json:"dateTo"`
 	Purpose     string `json:"purpose"`
 }
