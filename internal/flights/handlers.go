@@ -7,13 +7,14 @@ import (
 
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
 
-	req := FlightSearchRequest{
-		Origin:      "LHR",
-		Destination: "BER",
-		Date:        "2026-05-22",
-		DirectOnly:  true,
-		MaxPrice:    300,
-	}
+	// req := FlightSearchRequest{
+	// 	Origin:      "LHR",
+	// 	Destination: "BER",
+	// 	Date:        "2026-05-22",
+	// 	DirectOnly:  true,
+	// 	MaxPrice:    300,
+	// }
+	var req FlightSearchRequest
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Invalid Json", http.StatusBadRequest)

@@ -5,11 +5,13 @@ import (
 	"net/http"
 	"travel-api/internal/flights"
 	"travel-api/internal/intent"
+	"travel-api/internal/rail"
 )
 
 func main() {
 	http.HandleFunc("/api/search-flights", flights.SearchHandler)
 	http.HandleFunc("/api/intent", intent.Handler)
+	http.HandleFunc("/api/search-rails", rail.SearchRailsHandler)
 
 	fmt.Println("Server running on :8080")
 	http.ListenAndServe(":8080", nil)
