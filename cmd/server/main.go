@@ -52,6 +52,7 @@ func main() {
 	}
 
 	http.HandleFunc("/api/trips", trips.CreateTripHandler(conn))
+	http.HandleFunc("/api/trips/{id}", trips.GetTripHandler(conn))
 
 	fmt.Println("Connected!")
 	fmt.Println("Server running on :8080")

@@ -44,3 +44,29 @@ func Create(conn *pgx.Conn, req CreateTripRequest) (Trip, error) {
 		Status: "DRAFT"}, nil
 
 }
+
+func GetTripById(conn *pgx.Conn, tripID string) (Trip, error) {
+	var trip Trip
+
+	row := conn.QueryRow(context.Background(),
+		`SELECT id, traveller_id, destination, date_from, date_to, purpose, status, total_cost, notes FROM trips WHERE id = $1`,
+		tripID)
+
+	err := row.Scan(
+		&trip.ID,
+		&trip.TravellerID,
+		&trip.Destination,
+		&trip.DateFrom,
+		&trip.DateTo,
+		&trip.Purpose,
+		&trip.Status,
+		&trip.TotalCost,
+		&trip.Notes)
+
+	if err != nil {
+		log.Printf("Error fetching trip %s: %v\n", tripID, err)
+		return Trip{}, err
+	}
+
+	return trip, nil
+}
